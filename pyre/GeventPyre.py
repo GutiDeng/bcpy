@@ -4,15 +4,14 @@ from gevent.server import StreamServer
 from gevent import socket
 import gevent
 
-
 class GeventPyreHandler(AbstractPyreHandler):
     def __init__(self, sock):
         AbstractPyreHandler.__init__(self, sock)
-        self._pyre_cmdmap = {
+        self._pyre_cmdmap.update({
             'PING': self.PING,
             'SELECT': self.SELECT,
             'INFO': self.INFO,
-        }
+        })
     def PING(self, req):
         self._pyre_reply('+', 'PONG')
     def SELECT(self, req):
@@ -30,11 +29,10 @@ class GeventPyreHandler(AbstractPyreHandler):
             p.take_request(s)
             
             for req in p.pop_requests():
-                cmd = req[0]
-                if cmd in self._pyre_cmdmap:
-                    self._pyre_cmdmap[cmd](req)
-                else:
-                    self._pyre_cmdmap['UNIMPLEMENTED'](req)
+                cmd = req[0].upper()
+                if cmd not in self._pyre_cmdmap:
+                    cmd = 'UNIMPLEMENTED'
+                self._pyre_cmdmap[cmd](req)
             
             for resp in p.pop_responses():
                 self._pyre_sock.send(resp)

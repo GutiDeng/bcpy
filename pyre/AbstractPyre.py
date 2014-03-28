@@ -2,8 +2,6 @@ from bcpy.daemon import Daemon
 
 from RedisProtocol import RedisProtocol
 
-import time
-
 class AbstractPyreHandler:
     def __init__(self, sock):
         self._pyre_sock = sock 

@@ -57,7 +57,7 @@ class Daemon:
         elif self._cli_cmd == 'restart':
             self.restart()
         else:
-            sys.stderr.write('[ERROR] Mandatory: --cmd=start|stop|restart\n')
+            sys.stderr.write('[ERROR] Mandatory: --bcpy-cmd=start|stop|restart\n')
             sys.exit(-1)
     
     
