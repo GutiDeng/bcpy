@@ -35,7 +35,7 @@ class Daemon:
             
             if k == '--bcpy-cmd':
                 self._cli_cmd = v
-            elif k == '--bcpy-cmd':
+            elif k == '--bcpy-pname':
                 self._cli_pname = v
             elif k == '--bcpy-daemonize':
                 self._cli_daemonize = True if v.lower() == 'true' else False
