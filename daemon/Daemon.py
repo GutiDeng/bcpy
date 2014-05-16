@@ -40,6 +40,8 @@ class Daemon:
             elif k == '--bcpy-daemonize':
                 self._cli_daemonize = True if v.lower() == 'true' else False
             else:
+                if k.startswith('--'):
+                    k = k[2:]
                 self._cli_args.update([(k, v)])
     
     def take_over(self):
