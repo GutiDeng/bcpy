@@ -40,7 +40,7 @@ class Daemon:
             elif k == '--bcpy-daemonize':
                 self._cli_daemonize = True if v.lower() == 'true' else False
             else:
-                self._cli_args.update([k, v])
+                self._cli_args.update([(k, v)])
     
     def take_over(self):
         if not self._learned:
