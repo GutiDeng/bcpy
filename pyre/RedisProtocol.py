@@ -56,6 +56,7 @@ class RedisProtocol:
         
         
     def take_response(self, *args):
+        # print self._repr_response(*args)
         self._responses.append( self._repr_response(*args) )
         return
     def _repr_response(self, *args):
